@@ -48,7 +48,20 @@
     "openai-codex/gpt-5.6-terra"
   ],
   "packages": [
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "git:github.com/Federicocervelli/pi-ask-user",
+    "git:github.com/Federicocervelli/pi-background-terminals",
+    "git:github.com/Federicocervelli/pi-codex-fast",
+    "git:github.com/Federicocervelli/pi-codex-usage",
+    "git:github.com/Federicocervelli/pi-dictate",
+    "git:github.com/Federicocervelli/pi-file-search",
+    "git:github.com/Federicocervelli/pi-git-info",
+    "git:github.com/Federicocervelli/pi-goal",
+    "git:github.com/Federicocervelli/pi-idle-notify",
+    "git:github.com/Federicocervelli/pi-model-info",
+    "git:github.com/Federicocervelli/pi-subagents",
+    "git:github.com/Federicocervelli/pi-ui-customization",
+    "git:github.com/Federicocervelli/pi-workflows"
   ],
   "subagents": {
     "defaultModel": "openai-codex/gpt-5.6-luna",
