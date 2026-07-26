@@ -10,7 +10,7 @@ Back up an existing agent directory, then clone this repository as `~/.pi/agent`
 
 ```bash
 mv ~/.pi/agent ~/.pi/agent.backup 2>/dev/null || true
-git clone https://github.com/Federicocervelli/pi-agent.git ~/.pi/agent
+git clone https://github.com/Federicocervelli/my-pi-config.git ~/.pi/agent
 cd ~/.pi/agent
 npm install
 ```
