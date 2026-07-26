@@ -25,7 +25,6 @@ Pi reads the package sources from `settings.json`, clones missing packages, and 
 - [pi-model-info](https://github.com/Federicocervelli/pi-model-info)
 - [pi-subagents](https://github.com/Federicocervelli/pi-subagents)
 - [pi-ui-customization](https://github.com/Federicocervelli/pi-ui-customization)
-- [pi-workflows](https://github.com/Federicocervelli/pi-workflows)
 
 Install one independently with:
 

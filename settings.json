@@ -61,7 +61,6 @@
     "git:github.com/Federicocervelli/pi-model-info",
     "git:github.com/Federicocervelli/pi-subagents",
     "git:github.com/Federicocervelli/pi-ui-customization",
-    "git:github.com/Federicocervelli/pi-workflows",
     "git:github.com/Federicocervelli/pi-theme-github-dark-default"
   ],
   "subagents": {
