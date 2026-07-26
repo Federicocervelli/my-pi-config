@@ -2,8 +2,6 @@
 
 My personal, opinionated configuration for [Pi](https://github.com/badlogic/pi-mono). This repository is the contents of `~/.pi/agent`; it is not intended as a neutral default setup.
 
-Credentials, sessions, trust decisions, and installed packages stay local and are ignored.
-
 ## Install
 
 ```bash
