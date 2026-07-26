@@ -1,0 +1,16 @@
+# Local Pi state and credentials
+/auth.json
+/trust.json
+/sessions/
+/npm/
+/git/
+/extensions/**/state/
+
+# Installed dependencies
+/node_modules/
+/extensions/*/node_modules/
+
+# Local secrets and OS files
+.env
+.env.*
+.DS_Store

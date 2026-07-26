@@ -1,0 +1,82 @@
+{
+  "lastChangelogVersion": "0.82.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "xhigh",
+  "idleNotify": {
+    "enabled": true,
+    "title": "Pi",
+    "appName": "pi",
+    "notifyCommand": "notify-send",
+    "notifyArgs": [
+      "-a",
+      "pi",
+      "--urgency",
+      "normal",
+      "{title}",
+      "{body}"
+    ],
+    "notifyOn": [
+      "finished",
+      "question",
+      "error",
+      "permission",
+      "misc"
+    ],
+    "includePreview": true,
+    "previewMaxLength": 180,
+    "minIntervalMs": 3000,
+    "suppressWhenFocused": true,
+    "soundPath": "/usr/share/sounds/freedesktop/stereo/complete.oga",
+    "soundByStatus": {
+      "error": "/usr/share/sounds/freedesktop/stereo/dialog-error.oga",
+      "question": "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
+      "permission": "/usr/share/sounds/freedesktop/stereo/dialog-warning.oga"
+    },
+    "soundPlayer": "paplay",
+    "soundPlayerArgs": [
+      "--volume=25000",
+      "{soundPath}"
+    ]
+  },
+  "enabledModels": [
+    "openai-codex/gpt-5.5",
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.3-codex-spark",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra"
+  ],
+  "packages": [
+    "npm:pi-web-access"
+  ],
+  "subagents": {
+    "defaultModel": "openai-codex/gpt-5.6-luna",
+    "agentOverrides": {
+      "planner": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high"
+      },
+      "scout": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "medium"
+      },
+      "delegate": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "medium"
+      }
+    }
+  },
+  "theme": "github-dark-default",
+  "pi-codex-fast": {
+    "enabled": false
+  }
+}
