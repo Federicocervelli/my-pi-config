@@ -1,31 +1,34 @@
-# Pi agent configuration
+# My Pi config
 
-Public configuration, extensions, themes, and skills for [Pi](https://github.com/badlogic/pi-mono).
+My personal, opinionated configuration for [Pi](https://github.com/badlogic/pi-mono). This repository is the contents of `~/.pi/agent`; it is not intended as a neutral default setup.
 
-This repository is the contents of `~/.pi/agent`. It intentionally contains configuration and source only; credentials, sessions, trust decisions, and installed packages stay local and are ignored.
+Credentials, sessions, trust decisions, and installed packages stay local and are ignored.
 
 ## Install
 
-Back up an existing agent directory, then clone this repository as `~/.pi/agent`:
-
 ```bash
-mv ~/.pi/agent ~/.pi/agent.backup 2>/dev/null || true
 git clone https://github.com/Federicocervelli/my-pi-config.git ~/.pi/agent
 cd ~/.pi/agent
-npm install
-```
-
-Restore `auth.json` from your local backup if needed. Pi credentials must never be committed.
-
-## Development
-
-The root dependencies and extension dependencies are installed separately:
-
-```bash
 npm install
 for dir in extensions/*; do
   [ -f "$dir/package.json" ] && npm --prefix "$dir" install
 done
 ```
 
-Each extension package provides its own `test`, `check`, and formatting scripts where applicable. The configuration is intentionally opinionated; adjust `settings.json` and remove extensions or skills you do not need.
+Adjust `settings.json`, extensions, and skills to suit your machine.
+
+## Extensions
+
+- **ask-user** — asks the user a multiple-choice question.
+- **background-terminals** — runs and monitors long-lived shell commands.
+- **codex-fast** — toggles priority service tier for supported Codex models.
+- **codex-usage** — displays remaining Codex quota.
+- **dictate** — offline WhisperX voice dictation.
+- **file-search** — provides safe `fd` and `rg` search tools.
+- **git-info** — shows repository status and changed-file information.
+- **goal** — runs bounded planner → implementation → review goals.
+- **idle-notify** — sends desktop notifications when Pi settles.
+- **model-info** — displays model, token, timing, and cost information.
+- **subagents** — runs and manages parallel Pi, Claude, and Codex subagents.
+- **ui-customization** — provides the custom footer and dashboard styling.
+- **workflows** — runs model-authored multi-agent orchestration workflows.
