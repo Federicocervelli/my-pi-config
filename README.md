@@ -19,11 +19,13 @@ Restore `auth.json` from your local backup if needed. Pi credentials must never 
 
 ## Development
 
+The root dependencies and extension dependencies are installed separately:
+
 ```bash
 npm install
-npm test
-npm run check
-npm run format:check
+for dir in extensions/*; do
+  [ -f "$dir/package.json" ] && npm --prefix "$dir" install
+done
 ```
 
-The configuration is intentionally opinionated. Adjust `settings.json` and remove extensions or skills you do not need.
+Each extension package provides its own `test`, `check`, and formatting scripts where applicable. The configuration is intentionally opinionated; adjust `settings.json` and remove extensions or skills you do not need.
