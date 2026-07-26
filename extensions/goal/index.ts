@@ -477,16 +477,6 @@ Run the smallest relevant verification after edits and report exactly what you c
     });
   };
 
-  pi.registerCommand("quality", {
-    description: "Start a goal focused on simplifying and improving code quality",
-    handler: async (_args, ctx) => beginGoal(
-      "Analyze the current working tree and improve it for simplicity and maintainability. Remove unnecessary duplication and abstractions, reuse existing helpers and standard-library functionality, preserve behavior, and run relevant tests. Do not broaden the scope. Do not call goal_complete until the implementation and verification are complete.",
-      12,
-      30_000,
-      ctx,
-    ),
-  });
-
   pi.registerCommand("goal", {
     description: "Set, inspect, pause, resume, or clear a long-running goal",
     handler: async (rawArgs, ctx) => {
