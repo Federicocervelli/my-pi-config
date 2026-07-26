@@ -20,6 +20,8 @@ const WHISPERX_SERVER = "http://127.0.0.1:8765";
 const SPINNER_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 const PEAK_BLOCKS = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
 const METER_CELLS = 6;
+const METER_MIN_DB = -60;
+const METER_MAX_DB = 0;
 
 type State = "idle" | "recording" | "transcribing";
 interface EditorLike {
@@ -47,7 +49,10 @@ function rmsFromPcm16(buf: Buffer): number {
 function rmsToBlock(rms: number): string {
   if (rms <= 0) return PEAK_BLOCKS[0]!;
   const db = 20 * Math.log10(rms);
-  const position = Math.max(0, Math.min(1, (db + 50) / 40));
+  const position = Math.max(
+    0,
+    Math.min(1, (db - METER_MIN_DB) / (METER_MAX_DB - METER_MIN_DB)),
+  );
   return PEAK_BLOCKS[Math.floor(position * (PEAK_BLOCKS.length - 1))]!;
 }
 
@@ -83,6 +88,7 @@ export default function (pi: ExtensionAPI) {
   let spinnerTimer: NodeJS.Timeout | null = null;
   let meter: number[] = new Array(METER_CELLS).fill(0);
   let level = 0;
+  let meterRemainder: Buffer = Buffer.alloc(0);
 
   const setStatus = (text: string | undefined) => activeCtx?.ui.setStatus("dictate", text);
   const stopMeter = () => {
@@ -97,6 +103,7 @@ export default function (pi: ExtensionAPI) {
     stopMeter();
     meter = new Array(METER_CELLS).fill(0);
     level = 0;
+    meterRemainder = Buffer.alloc(0);
     const render = () => {
       const bars = meter.map(rmsToBlock).join("");
       setStatus(activeCtx?.ui.theme.fg("thinkingMedium", bars) ?? bars);
@@ -161,6 +168,7 @@ export default function (pi: ExtensionAPI) {
     recorder = null;
     request = null;
     chunks = [];
+    meterRemainder = Buffer.alloc(0);
     state = "idle";
     setStatus(undefined);
     activeCtx = null;
@@ -222,7 +230,10 @@ export default function (pi: ExtensionAPI) {
     proc.stdout.on("data", (chunk: Buffer) => {
       if (myGeneration !== generation) return;
       chunks.push(chunk);
-      level = rmsFromPcm16(chunk);
+      const meterChunk = meterRemainder.length ? Buffer.concat([meterRemainder, chunk]) : chunk;
+      const alignedLength = meterChunk.length - (meterChunk.length % 2);
+      meterRemainder = meterChunk.subarray(alignedLength);
+      level = rmsFromPcm16(meterChunk.subarray(0, alignedLength));
     });
     proc.once("error", (error) => {
       if (myGeneration !== generation) return;
