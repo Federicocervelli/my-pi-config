@@ -32,3 +32,7 @@ Install one independently with:
 ```bash
 pi install git:github.com/Federicocervelli/pi-ask-user
 ```
+
+## Theme
+
+The active theme is published separately as [pi-theme-github-dark-default](https://github.com/Federicocervelli/pi-theme-github-dark-default) and installed from `settings.json` like the extension packages.
