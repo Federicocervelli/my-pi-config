@@ -1,95 +1,19 @@
 {
-  "lastChangelogVersion": "0.82.1",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-luna",
+  "defaultModel": "gpt-6-luna",
   "defaultThinkingLevel": "medium",
-  "idleNotify": {
-    "enabled": true,
-    "title": "Pi",
-    "appName": "pi",
-    "notifyCommand": "notify-send",
-    "notifyArgs": [
-      "-a",
-      "pi",
-      "--urgency",
-      "normal",
-      "{title}",
-      "{body}"
-    ],
-    "notifyOn": [
-      "finished",
-      "question",
-      "error",
-      "permission",
-      "misc"
-    ],
-    "includePreview": true,
-    "previewMaxLength": 180,
-    "minIntervalMs": 3000,
-    "suppressWhenFocused": true,
-    "soundPath": "/usr/share/sounds/freedesktop/stereo/complete.oga",
-    "soundByStatus": {
-      "error": "/usr/share/sounds/freedesktop/stereo/dialog-error.oga",
-      "question": "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
-      "permission": "/usr/share/sounds/freedesktop/stereo/dialog-warning.oga"
-    },
-    "soundPlayer": "paplay",
-    "soundPlayerArgs": [
-      "--volume=25000",
-      "{soundPath}"
-    ]
-  },
   "enabledModels": [
-    "openai-codex/gpt-5.5",
-    "openai-codex/gpt-5.4",
-    "openai-codex/gpt-5.3-codex-spark",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra"
+    "openai-codex/gpt-6-astra",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-sol",
+    "opencode-go/glm-5.3-flash",
+    "opencode-go/space-bunny-free",
+    "opencode-go/deepseek-v4.1-flash",
+    "opencode-go/muse-spark-1.3-contributor"
   ],
+  "theme": "dark",
+  "lastChangelogVersion": "0.87.1",
   "packages": [
-    "npm:pi-web-access",
-    "git:github.com/Federicocervelli/pi-ask-user",
-    "git:github.com/Federicocervelli/pi-codex-fast",
-    "git:github.com/Federicocervelli/pi-codex-usage",
-    "git:github.com/Federicocervelli/pi-dictate",
-    "git:github.com/Federicocervelli/pi-file-search",
-    "git:github.com/Federicocervelli/pi-git-info",
-    "git:github.com/Federicocervelli/pi-goal",
-    "git:github.com/Federicocervelli/pi-idle-notify",
-    "git:github.com/Federicocervelli/pi-model-info",
-    "git:github.com/Federicocervelli/pi-ui-customization",
-    "git:github.com/Federicocervelli/pi-theme-github-dark-default",
-    "npm:pi-background-tasks@2.4.2",
-    "npm:pi-subagents@0.57.0"
-  ],
-  "subagents": {
-    "defaultModel": "openai-codex/gpt-5.6-luna",
-    "agentOverrides": {
-      "planner": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "high"
-      },
-      "worker": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "high"
-      },
-      "reviewer": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "high"
-      },
-      "scout": {
-        "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "medium"
-      },
-      "delegate": {
-        "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "medium"
-      }
-    }
-  },
-  "theme": "github-dark-default",
-  "pi-codex-fast": {
-    "enabled": true
-  }
+    "npm:pi-goal-x"
+  ]
 }
