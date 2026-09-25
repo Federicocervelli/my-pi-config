@@ -1,4 +1,13 @@
 # Local Pi state and credentials
+/caveman.json
+/crashes.json
+/models-store.json
+/run-history.jsonl
+/package.json
+/package-lock.json
+/tsconfig.json
+/missions/
+/web-search-cache/
 /auth.json
 /trust.json
 /sessions/
