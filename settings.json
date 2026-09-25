@@ -14,6 +14,7 @@
   "theme": "dark",
   "lastChangelogVersion": "0.87.1",
   "packages": [
-    "npm:pi-goal-x"
+    "npm:pi-goal-x",
+    "npm:pi-web-access"
   ]
 }
