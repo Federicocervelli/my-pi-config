@@ -10,7 +10,7 @@ Clone this repository to `~/.pi/agent` (back up any existing directory first), t
 
 - `settings.json` — current Pi settings and enabled models
 - `models.json` — custom model definitions
-- `extensions/` — local extensions and extension configuration
+- `extensions/` — local extensions and extension configuration, including RTK's Pi hook
 - `skills/` — personal and project skills
 
-The `npm:pi-goal-x` package remains configured in `settings.json`; it is installed by Pi separately. Runtime state, credentials, sessions, and `node_modules` are intentionally excluded.
+RTK command rewriting requires the `rtk` binary on `PATH`. Install RTK, then run `rtk init --agent pi --global` to install its global Pi hook. The hook fails open if RTK is unavailable. The `npm:pi-goal-x` package remains configured in `settings.json`; Pi installs it separately. Runtime state, credentials, sessions, and `node_modules` are intentionally excluded.
