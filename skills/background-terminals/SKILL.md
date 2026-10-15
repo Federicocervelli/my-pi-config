@@ -23,8 +23,10 @@ After starting, continue useful work instead of polling. Tool-launched jobs noti
 ## Inspect and stop
 
 - Use `bg_status` only when current status is needed.
-- Use `bg_logs` for bounded output; `/logs` is the interactive command.
+- Use `bg_logs` for bounded output.
 - Use `bg_kill` when a process is no longer needed or is stuck.
-- Use `/jobs` to inspect the task dock and `/kill` to stop tasks interactively.
+- The user can inspect and stop tasks with `/tasks` (or Shift+Down for the task dock).
 
-Prefer meaningful names and avoid duplicate servers or watchers. Output is captured under `.pi/tasks`; completion messages show bounded output. Tasks are killed during Pi shutdown or reload, while their metadata and artifacts remain available.
+Prefer meaningful names and avoid duplicate servers or watchers. Completion messages show bounded output. Tasks are killed during Pi shutdown or reload, while their metadata and output files remain available.
+
+Only the process tools are enabled (`PI_BG_FEATURES=process`); delegate work to other agents with `pi-subagents`, not this extension.

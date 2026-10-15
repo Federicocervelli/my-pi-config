@@ -1,20 +1,82 @@
 {
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-luna",
+  "defaultProvider": "claude-bridge",
+  "defaultModel": "claude-opus-5-5",
   "defaultThinkingLevel": "medium",
   "enabledModels": [
-    "openai-codex/gpt-6-astra",
-    "openai-codex/gpt-6-luna",
-    "openai-codex/gpt-6-sol",
-    "opencode-go/glm-5.3-flash",
-    "opencode-go/space-bunny-free",
-    "opencode-go/deepseek-v4.1-flash",
-    "opencode-go/muse-spark-1.3-contributor"
+    "claude-bridge/claude-fable-5-1",
+    "claude-bridge/claude-opus-5-5",
+    "claude-bridge/claude-sonnet-5-5",
+    "claude-bridge/claude-haiku-5-5",
+    "claude-bridge/claude-opus-4-7"
   ],
   "theme": "dark",
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.2.0",
   "packages": [
     "npm:pi-goal-x",
-    "npm:pi-web-access"
-  ]
+    "npm:pi-web-access",
+    "npm:pi-claude-bridge",
+    "npm:pi-subagents",
+    "npm:pi-background-tasks"
+  ],
+  "subagents": {
+    "defaultModel": "claude-bridge/claude-sonnet-5-5",
+    "defaultThinking": "medium",
+    "agentOverrides": {
+      "scout": {
+        "model": "claude-bridge/claude-haiku-5-5",
+        "thinking": "low"
+      },
+      "researcher": {
+        "model": "claude-bridge/claude-sonnet-5-5",
+        "thinking": "medium"
+      },
+      "worker": {
+        "model": "claude-bridge/claude-sonnet-5-5",
+        "thinking": "medium"
+      },
+      "delegate": {
+        "model": "claude-bridge/claude-sonnet-5-5",
+        "thinking": "medium"
+      },
+      "evidence-auditor": {
+        "model": "claude-bridge/claude-sonnet-5-5",
+        "thinking": "high"
+      },
+      "reviewer": {
+        "model": "claude-bridge/claude-opus-5-5",
+        "thinking": "medium"
+      },
+      "oracle": {
+        "model": "claude-bridge/claude-opus-5-5",
+        "thinking": "high"
+      },
+      "claude-code": {
+        "disabled": true
+      },
+      "claude-code-writer": {
+        "disabled": true
+      },
+      "codex-exec": {
+        "disabled": true
+      },
+      "codex-exec-writer": {
+        "disabled": true
+      },
+      "cursor-agent": {
+        "disabled": true
+      },
+      "cursor-agent-writer": {
+        "disabled": true
+      }
+    },
+    "modelScope": {
+      "enforce": true,
+      "strict": true,
+      "allow": [
+        "claude-bridge/claude-opus-5-5",
+        "claude-bridge/claude-sonnet-5-5",
+        "claude-bridge/claude-haiku-5-5"
+      ]
+    }
+  }
 }

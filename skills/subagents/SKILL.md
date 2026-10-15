@@ -5,41 +5,18 @@ description: invoke this skill when the user asks you to use subagents
 
 # Subagents
 
-Each subagent is headless, has its own context window, cannot see the parent conversation, cannot ask the user, and cannot spawn subagents or workflows. Give every child a self-contained prompt with paths, constraints, and the expected report.
+Subagents come from the `pi-subagents` package; its own `pi-subagents` skill documents the `subagent` tool. Each child is headless with its own context window and cannot see the parent conversation, so give every child a self-contained task with paths, constraints, and the expected report.
 
-## Pi Harness
+## Models
 
-**Harness:** `pi`
-**Prompt nicknames:** “pi”, “pi agent”, “pi subagent”
-**Best default:** Use when the user does not request another harness. Route work by difficulty:
+Models are pinned per agent in `settings.json` (`subagents.agentOverrides`), so normally pass no `model`:
 
-- **Planning:** use `openai-codex/gpt-5.6-sol` only for the hardest planning and architectural decisions. Sol is not an execution model.
-- **Quite hard execution/review:** use `openai-codex/gpt-5.6-terra`.
-- **Quick/easy execution or reconnaissance:** use `openai-codex/gpt-5.6-luna`.
+| Agent                                               | Model                              | Thinking |
+| --------------------------------------------------- | ---------------------------------- | -------- |
+| `scout`                                             | `claude-bridge/claude-haiku-5-5`   | low      |
+| `researcher`, `worker`, `delegate`, any other agent | `claude-bridge/claude-sonnet-5-5`  | medium   |
+| `evidence-auditor`                                  | `claude-bridge/claude-sonnet-5-5`  | high     |
+| `reviewer`                                          | `claude-bridge/claude-opus-5-5`    | medium   |
+| `oracle`                                            | `claude-bridge/claude-opus-5-5`    | high     |
 
-Do not use models from the Anthropic provider even if one appears in the model list.
-
-Pi can use any model shown by `pi --list-models`. Prefer `provider/model-id`; a bare model id only works when unambiguous. Common picks in this environment:
-
-| Model                            | Recommended effort |
-| -------------------------------- | ------------------ |
-| inherited parent model (default) | inherited          |
-| `openai-codex/gpt-5.6-sol`       | `high` — planning only |
-| `openai-codex/gpt-5.6-terra`     | `high` — harder execution |
-| `openai-codex/gpt-5.6-luna`      | `medium` — quick/easy work |
-
-**Thinking budgets:** `off`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`. These map directly to pi thinking levels.
-
-## Spawn and Manage
-
-Use the `pi` harness for every subagent. Sol is planning-only; Terra handles harder execution/review; Luna handles quick/easy work.
-
-Call `subagent_spawn` with a complete `prompt`, short `name`, chosen `harness`, and optional `working_dir`, `model`, and `reasoning_effort`. At most four subagents run concurrently.
-
-- `subagent_check({ id })`: peek without blocking.
-- `subagent_list()`: list all runs.
-- `subagent_wait({ ids })`: block only when results are required to proceed.
-- `subagent_cancel({ ids })`: stop runs while preserving partial transcripts.
-- `/sa`: inspect or take over a run interactively.
-
-Results return automatically. After spawning, continue useful parent work instead of immediately waiting.
+Only Opus 5.5, Sonnet 5.5, and Haiku 5.5 via `claude-bridge` are allowed (`subagents.modelScope`, strict). Never use Fable for subagents. Per-run overrides must stay within those three.
